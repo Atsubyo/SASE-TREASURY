@@ -1,4 +1,3 @@
 "use client";
 
-export * from "antd";
-// export * from "@ant-design/icons";
+export * from "antd"; 

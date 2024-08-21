@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import "@/styles/header.module.css";
 import GlobalHeader from "@/components/GlobalHeader";
 
 const inter = Inter({ subsets: ["latin"] });
