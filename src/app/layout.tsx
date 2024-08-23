@@ -3,6 +3,7 @@
 import "@mantine/core/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
 import { GlobalHeader } from "@/components";
 
 export const metadata = {
@@ -18,8 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body>
 				<MantineProvider>
-					<GlobalHeader />
-					{children}
+					<ModalsProvider>
+						<GlobalHeader />
+						{children}
+					</ModalsProvider>
 				</MantineProvider>
 			</body>
 		</html>
