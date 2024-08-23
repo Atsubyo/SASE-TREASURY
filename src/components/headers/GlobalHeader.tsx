@@ -2,11 +2,10 @@
 
 import React from "react";
 import {
-	Box,
+	AppShell,
+	AppShellHeader,
 	Burger,
 	Button,
-	Center,
-	Collapse,
 	Divider,
 	Drawer,
 	Group,
@@ -26,8 +25,12 @@ const GlobalHeader = () => {
 	const theme = useMantineTheme();
 
 	return (
-		<Box pb={120}>
-			<header className={styles.header}>
+		<AppShell pb={rem(60)}>
+			<AppShellHeader
+				h={rem(60)}
+				px={theme.spacing.md}
+				className={styles.header}
+			>
 				<Group justify="space-between" h="100%">
 					<Group>
 						<Text size="xl">SOFC Form Manager</Text>
@@ -65,7 +68,7 @@ const GlobalHeader = () => {
 						hiddenFrom="sm"
 					/>
 				</Group>
-			</header>
+			</AppShellHeader>
 			<Drawer
 				opened={drawerOpened}
 				onClose={closeDrawer}
@@ -89,7 +92,7 @@ const GlobalHeader = () => {
 					</Group>
 				</ScrollArea>
 			</Drawer>
-		</Box>
+		</AppShell>
 	);
 };
 
