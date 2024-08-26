@@ -1,14 +1,34 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { Box, Button, Center, Code, Stack, Text } from "@mantine/core";
-import { closeAllModals, openModal } from "@mantine/modals";
+import React, { Fragment, useMemo, useState } from "react";
+import { Box } from "@mantine/core";
 import { DataTable } from "mantine-datatable";
-import mockRequests from "@/data/mockRequests.json";
+import { mockData } from "@/data/mockRequests";
 import { Request } from "@/types/RequestTypes";
 import { DataTableRowClickParams } from "@/types/DataTableTypes";
+import { useDisclosure } from "@mantine/hooks";
+import RequestProcessDrawer from "@/components/drawers/RequestProcessDrawer";
+
+export const formatUSD = (amount?: number): string => {
+	const formatter = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+	});
+	if (amount) {
+		return formatter.format(amount);
+	} else {
+		return formatter.format(0);
+	}
+};
 
 const Dashboard = () => {
+	const [drawerOpened, drawerHandler] = useDisclosure(false);
+	const [rowParams, setRowParams] = useState<DataTableRowClickParams>({
+		event: {} as React.MouseEvent,
+		record: {} as Request,
+		index: 0,
+	});
+
 	const columns = useMemo(
 		() => [
 			{
@@ -21,11 +41,7 @@ const Dashboard = () => {
 			{
 				accessor: "amount",
 				render: ({ amount }: Request) => {
-					const formatter = new Intl.NumberFormat("en-US", {
-						style: "currency",
-						currency: "USD",
-					});
-					return <Box>{formatter.format(amount)}</Box>;
+					return <Box>{formatUSD(amount)}</Box>;
 				},
 			},
 			{
@@ -35,58 +51,27 @@ const Dashboard = () => {
 		[]
 	);
 	return (
-		<DataTable
-			textSelectionDisabled
-			withTableBorder
-			withColumnBorders
-			striped
-			highlightOnHover
-			records={mockRequests}
-			columns={columns}
-			onRowClick={({ record, index, event }: DataTableRowClickParams) => {
-				openModal({
-					title: "Company information",
-					children: (
-						<Stack>
-							<Text size="sm">
-								You clicked on row[{index}], referring to company{" "}
-								<em>{record.requesterName}</em>.
-								<br />
-								{event.shiftKey && (
-									<>
-										You pressed the <Code>Shift</Code> key when clicking.
-										<br />
-									</>
-								)}
-								{event.ctrlKey && (
-									<>
-										You pressed the <Code>Ctrl</Code> key when clicking.
-										<br />
-									</>
-								)}
-								{event.altKey && (
-									<>
-										You pressed the <Code>Alt</Code> key when clicking.
-										<br />
-									</>
-								)}
-								{event.metaKey && (
-									<>
-										You pressed the <Code>Meta</Code> key when clicking.
-										<br />
-									</>
-								)}
-							</Text>
-							<Center>
-								<Button fullWidth onClick={() => closeAllModals()}>
-									OK
-								</Button>
-							</Center>
-						</Stack>
-					),
-				});
-			}}
-		/>
+		<Fragment>
+			<DataTable
+				textSelectionDisabled
+				withTableBorder
+				withColumnBorders
+				striped
+				highlightOnHover
+				records={mockData}
+				columns={columns}
+				onRowClick={(params: DataTableRowClickParams) => {
+					drawerHandler.open();
+					setRowParams(params);
+				}}
+			/>
+			<RequestProcessDrawer
+				drawerOpened={drawerOpened}
+				open={drawerHandler.open}
+				close={drawerHandler.close}
+				rowParams={rowParams}
+			/>
+		</Fragment>
 	);
 };
 
