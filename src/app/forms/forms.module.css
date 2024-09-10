@@ -8,3 +8,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.textInput {
+  max-width: 40rem;
+  /* padding-block: 0 1.5rem; */
+}
+
+.input {
+  max-width: 40rem;
+}
+
+.inputIcon {
+  width: rem(18);
+  height: rem(18);
+  stroke: 1.5;
+}

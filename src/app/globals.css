@@ -1,4 +1,7 @@
 :root {
+  --SASE-blue: #0668B3;
+  --SASE-green: #7DC242;
+  
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",

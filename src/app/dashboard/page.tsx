@@ -9,7 +9,7 @@ import { DataTableRowClickParams } from "@/types/DataTableTypes";
 import { useDisclosure } from "@mantine/hooks";
 import RequestProcessDrawer from "@/components/drawers/RequestProcessDrawer";
 
-export const formatUSD = (amount?: number): string => {
+const formatUSD = (amount?: number): string => {
 	const formatter = new Intl.NumberFormat("en-US", {
 		style: "currency",
 		currency: "USD",

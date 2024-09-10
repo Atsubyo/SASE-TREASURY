@@ -19,7 +19,12 @@ import { useDisclosure } from "@mantine/hooks";
 import styles from "./globalHeader.module.css";
 import Link from "next/link";
 
-const GlobalHeader = () => {
+interface GlobalHeaderProps {
+	title: string;
+	tabs: string[];
+}
+
+const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
 		useDisclosure(false);
 	const theme = useMantineTheme();
@@ -33,30 +38,20 @@ const GlobalHeader = () => {
 			>
 				<Group justify="space-between" h="100%">
 					<Group>
-						<Text size="xl">SOFC Form Manager</Text>
+						<Text size="xl">{props.title}</Text>
 					</Group>
 					<Group h="100%" gap={0} visibleFrom="sm">
-						<UnstyledButton
-							className={styles.link}
-							component={Link}
-							href="/home"
-						>
-							Home
-						</UnstyledButton>
-						<UnstyledButton
-							className={styles.link}
-							component={Link}
-							href="/forms"
-						>
-							Forms
-						</UnstyledButton>
-						<UnstyledButton
-							className={styles.link}
-							component={Link}
-							href="/dashboard"
-						>
-							Dashboard
-						</UnstyledButton>
+						{props.tabs.map((val: string, idx: number) => (
+							<UnstyledButton
+								key={idx}
+								className={styles.link}
+								component={Link}
+								href={`/${val.toLowerCase()}`}
+								title={val}
+							>
+								{val}
+							</UnstyledButton>
+						))}
 					</Group>
 					<Group visibleFrom="sm">
 						<Button>Login</Button>

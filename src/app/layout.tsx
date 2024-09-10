@@ -1,7 +1,7 @@
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css";
 import "mantine-datatable/styles.layer.css";
+import "@mantine/dates/styles.css";
+import "@mantine/dropzone/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
@@ -12,7 +12,12 @@ export const metadata = {
 	description: "I have followed setup instructions carefully",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+	children,
+}: {
+	children: React.ReactNode;
+}) {
+	const tabs = ["Home", "Forms", "Dashboard"];
 	return (
 		<html lang="en">
 			<head>
@@ -21,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<MantineProvider>
 					<ModalsProvider>
-						<GlobalHeader />
+						<GlobalHeader title="SASE Treasury" tabs={tabs} />
 						{children}
 					</ModalsProvider>
 				</MantineProvider>
