@@ -11,11 +11,18 @@
 
 .textInput {
   max-width: 40rem;
-  /* padding-block: 0 1.5rem; */
 }
 
 .input {
   max-width: 40rem;
+}
+
+.inputMargin {
+  margin-block: 0 1.5rem;
+}
+
+.fullButton {
+  width: 100%;
 }
 
 .inputIcon {

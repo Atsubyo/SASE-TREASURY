@@ -9,19 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "^7.12.1",
+    "@mantine/core": "^7.12.2",
     "@mantine/dates": "^7.12.1",
-    "@mantine/dropzone": "^7.12.1",
-    "@mantine/form": "^7.12.1",
-    "@mantine/hooks": "^7.12.1",
+    "@mantine/dropzone": "^7.12.2",
+    "@mantine/form": "^7.12.2",
+    "@mantine/hooks": "^7.12.2",
     "@mantine/modals": "^7.12.1",
     "@mantine/notifications": "^7.12.1",
-    "@tabler/icons-react": "^3.12.0",
+    "@tabler/icons-react": "^3.16.0",
     "clsx": "^2.1.1",
     "mantine-datatable": "^7.11.3",
     "next": "14.2.6",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
