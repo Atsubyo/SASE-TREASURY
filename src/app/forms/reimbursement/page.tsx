@@ -1,6 +1,6 @@
 "use client";
 
-import Reacts from "react";
+import React from "react";
 import {
 	Button,
 	Center,
@@ -10,8 +10,6 @@ import {
 	FileInputProps,
 	Pill,
 	PillGroup,
-	Radio,
-	RadioGroup,
 	rem,
 	SegmentedControl,
 	Stack,
