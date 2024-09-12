@@ -9,6 +9,10 @@
   justify-content: center;
 }
 
+.title {
+  align-self: center;
+}
+
 .textInput {
   max-width: 40rem;
 }

@@ -15,6 +15,7 @@ import {
 	Stack,
 	Textarea,
 	TextInput,
+	Title,
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm, zodResolver } from "@mantine/form";
@@ -37,6 +38,7 @@ const ReimbursementForm: React.FC = () => {
 			uin: "",
 			deliveryMethod: "mailin",
 			directDepositSetup: false,
+			amount: 0,
 			purpose: "",
 			proof: [],
 		},
@@ -102,121 +104,126 @@ const ReimbursementForm: React.FC = () => {
 	return (
 		<Container py={rem(20)}>
 			<Center>
-				<form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-					<Stack justify="center">
-						<TextInput
-							label="Full Name"
-							description="Full name of the person who made the purchase."
-							aria-label="name"
-							placeholder="John Doe"
-							className={`${styles.textInput} ${styles.inputMargin}`}
-							withAsterisk
-							{...form.getInputProps("name")}
-						/>
-						<TextInput
-							label="Phone Number"
-							description="Phone number of the person who made the purchase."
-							aria-label="phone number"
-							placeholder="1234567890"
-							className={`${styles.textInput} ${styles.inputMargin}`}
-							withAsterisk
-							{...form.getInputProps("phone")}
-						/>
-						<TextInput
-							label="Mailing Address"
-							description="Valid non-P.O. Box address for check to to be sent (needed regardless of reimbursement method)."
-							aria-label="mailing address"
-							placeholder="1234 SASE TAMU Dr, College Station, TX 77840"
-							className={`${styles.textInput} ${styles.inputMargin}`}
-							withAsterisk
-							{...form.getInputProps("address")}
-						/>
-						<DatePickerInput
-							label="Transaction Date"
-							description="The date the purchase was made."
-							aria-label="transaction date"
-							placeholder="YYYY-MM-DD"
-							valueFormat="YYYY-MM-DD"
-							maxDate={new Date()}
-							className={`${styles.input} ${styles.inputMargin}`}
-							leftSection={<IconCalendar className={styles.inputIcon} />}
-							leftSectionPointerEvents="none"
-							clearable
-							withAsterisk
-							{...form.getInputProps("transactionDate")}
-						/>
-						<SegmentedControl
-							value={form.values.requesterType}
-							className={`${styles.input} ${styles.inputMargin}`}
-							color={SASE_BLUE}
-							data={[
-								{ label: "TAMU Student", value: "student" },
-								{ label: "TAMU Employee", value: "employee" },
-								{ label: "Other", value: "other" },
-							]}
-							{...form.getInputProps("requesterType")}
-						/>
-						{form.values.requesterType !== "other" ? (
+				<Stack>
+					<Title order={1} className={styles.title}>
+						Reimbursement Request Form
+					</Title>
+					<form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+						<Stack justify="center">
 							<TextInput
-								label="UIN"
-								description="TAMU affiliated Universal Identification Number."
+								label="Full Name"
+								description="Full name of the person who made the purchase."
 								aria-label="name"
-								placeholder="123456789"
+								placeholder="John Doe"
 								className={`${styles.textInput} ${styles.inputMargin}`}
 								withAsterisk
-								{...form.getInputProps("uin")}
+								{...form.getInputProps("name")}
 							/>
-						) : null}
-						<SegmentedControl
-							value={form.values.deliveryMethod}
-							className={`${styles.input} ${styles.inputMargin}`}
-							color={SASE_BLUE}
-							data={[
-								{ label: "Mail In Check", value: "mailin" },
-								{ label: "SOFC Pickup", value: "pickup" },
-								{ label: "Direct Deposit", value: "deposit" },
-							]}
-							{...form.getInputProps("deliveryMethod")}
-						/>
-						{form.values.deliveryMethod === "deposit" ? (
-							<Checkbox
-								name="directDepositSetup"
-								label="I assert I have direct deposit setup with the treasurer."
-								aria-label="i assert i have direct deposity setup with the treasurer"
-								description="Contact Treasurer (sasetamu.treasurer@gmail.com) if you are unsure."
-								{...form.getInputProps("directDepositSetup")}
+							<TextInput
+								label="Phone Number"
+								description="Phone number of the person who made the purchase."
+								aria-label="phone number"
+								placeholder="1234567890"
+								className={`${styles.textInput} ${styles.inputMargin}`}
+								withAsterisk
+								{...form.getInputProps("phone")}
 							/>
-						) : null}
-						<Textarea
-							label="Purpose of Purchase"
-							description="What was the purchase and how it is relevant to SASE."
-							aria-label="purpose of purchase"
-							placeholder="Forks and Spoons used for serving and eating food at company X GBM."
-							className={`${styles.textInput} ${styles.inputMargin}`}
-							withAsterisk
-							autosize
-							minRows={3}
-							maxRows={5}
-							{...form.getInputProps("purpose")}
-						/>
-						<FileInput
-							label="Proof of Purchase"
-							aria-label="proof of purchase"
-							placeholder="HEB_Receipt-John_Doe.pdf"
-							className={`${styles.input} ${styles.inputMargin}`}
-							leftSection={<IconFileTypePdf className={styles.inputIcon} />}
-							leftSectionPointerEvents="none"
-							valueComponent={filePill}
-							accept="pdf"
-							multiple
-							clearable
-							{...form.getInputProps("proof")}
-						/>
-						<Button size="lg" type="submit" className={styles.fullButton}>
-							Submit
-						</Button>
-					</Stack>
-				</form>
+							<TextInput
+								label="Mailing Address"
+								description="Valid non-P.O. Box address for check to to be sent (needed regardless of reimbursement method)."
+								aria-label="mailing address"
+								placeholder="1234 SASE TAMU Dr, College Station, TX 77840"
+								className={`${styles.textInput} ${styles.inputMargin}`}
+								withAsterisk
+								{...form.getInputProps("address")}
+							/>
+							<DatePickerInput
+								label="Transaction Date"
+								description="The date the purchase was made."
+								aria-label="transaction date"
+								placeholder="YYYY-MM-DD"
+								valueFormat="YYYY-MM-DD"
+								maxDate={new Date()}
+								className={`${styles.input} ${styles.inputMargin}`}
+								leftSection={<IconCalendar className={styles.inputIcon} />}
+								leftSectionPointerEvents="none"
+								clearable
+								withAsterisk
+								{...form.getInputProps("transactionDate")}
+							/>
+							<SegmentedControl
+								value={form.values.requesterType}
+								className={`${styles.input} ${styles.inputMargin}`}
+								color={SASE_BLUE}
+								data={[
+									{ label: "TAMU Student", value: "student" },
+									{ label: "TAMU Employee", value: "employee" },
+									{ label: "Other", value: "other" },
+								]}
+								{...form.getInputProps("requesterType")}
+							/>
+							{form.values.requesterType !== "other" ? (
+								<TextInput
+									label="UIN"
+									description="TAMU affiliated Universal Identification Number."
+									aria-label="name"
+									placeholder="123456789"
+									className={`${styles.textInput} ${styles.inputMargin}`}
+									withAsterisk
+									{...form.getInputProps("uin")}
+								/>
+							) : null}
+							<SegmentedControl
+								value={form.values.deliveryMethod}
+								className={`${styles.input} ${styles.inputMargin}`}
+								color={SASE_BLUE}
+								data={[
+									{ label: "Mail In Check", value: "mailin" },
+									{ label: "SOFC Pickup", value: "pickup" },
+									{ label: "Direct Deposit", value: "deposit" },
+								]}
+								{...form.getInputProps("deliveryMethod")}
+							/>
+							{form.values.deliveryMethod === "deposit" ? (
+								<Checkbox
+									name="directDepositSetup"
+									label="I assert I have direct deposit setup with the treasurer."
+									aria-label="i assert i have direct deposity setup with the treasurer"
+									description="Contact Treasurer (sasetamu.treasurer@gmail.com) if you are unsure."
+									{...form.getInputProps("directDepositSetup")}
+								/>
+							) : null}
+							<Textarea
+								label="Purpose of Purchase"
+								description="What was the purchase and how is it relevant to SASE."
+								aria-label="purpose of purchase"
+								placeholder="Forks and Spoons used for serving and eating food at company X GBM."
+								className={`${styles.textInput} ${styles.inputMargin}`}
+								withAsterisk
+								autosize
+								minRows={3}
+								maxRows={5}
+								{...form.getInputProps("purpose")}
+							/>
+							<FileInput
+								label="Proof of Purchase"
+								aria-label="proof of purchase"
+								placeholder="HEB_Receipt-John_Doe.pdf"
+								className={`${styles.input} ${styles.inputMargin}`}
+								leftSection={<IconFileTypePdf className={styles.inputIcon} />}
+								leftSectionPointerEvents="none"
+								valueComponent={filePill}
+								accept="pdf"
+								multiple
+								clearable
+								{...form.getInputProps("proof")}
+							/>
+							<Button size="lg" type="submit" className={styles.fullButton}>
+								Submit
+							</Button>
+						</Stack>
+					</form>
+				</Stack>
 			</Center>
 		</Container>
 	);
