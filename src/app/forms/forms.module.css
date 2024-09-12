@@ -21,6 +21,17 @@
   margin-block: 0 1.5rem;
 }
 
+.optionMargin {
+  margin-block: 0 0.5rem;
+}
+
+.pill {
+  max-width: 40em;
+  overflow: "hidden";
+  text-overflow: "ellipsis";
+  white-space: "nowrap";
+}
+
 .fullButton {
   width: 100%;
 }

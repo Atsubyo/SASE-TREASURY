@@ -4,11 +4,14 @@ import Reacts from "react";
 import {
 	Button,
 	Center,
+	Checkbox,
 	Container,
 	FileInput,
 	FileInputProps,
 	Pill,
 	PillGroup,
+	Radio,
+	RadioGroup,
 	rem,
 	SegmentedControl,
 	Stack,
@@ -35,6 +38,7 @@ const ReimbursementForm: React.FC = () => {
 			requesterType: "student",
 			uin: "",
 			deliveryMethod: "mailin",
+			directDepositSetup: false,
 			purpose: "",
 			proof: [],
 		},
@@ -46,7 +50,11 @@ const ReimbursementForm: React.FC = () => {
 			values.uin = "";
 			form.setFieldValue("uin", "");
 		}
-		console.log(values);
+		if (values.deliveryMethod !== "deposit") {
+			values.directDepositSetup = false;
+			form.setFieldValue("directDepositSetup", false);
+		}
+		// call api
 	};
 
 	const filePill: FileInputProps["valueComponent"] = ({ value }) => {
@@ -57,7 +65,6 @@ const ReimbursementForm: React.FC = () => {
 			} else {
 				value = null;
 			}
-			console.log(form);
 		};
 
 		if (value === null) {
@@ -70,6 +77,7 @@ const ReimbursementForm: React.FC = () => {
 					{value.map((file, index) => (
 						<Pill
 							key={index}
+							className={styles.pill}
 							size="sm"
 							withRemoveButton
 							onRemove={() => removePill(index)}
@@ -82,7 +90,12 @@ const ReimbursementForm: React.FC = () => {
 		}
 
 		return (
-			<Pill size="sm" withRemoveButton onRemove={() => removePill(0)}>
+			<Pill
+				className={styles.pill}
+				size="sm"
+				withRemoveButton
+				onRemove={() => removePill(0)}
+			>
 				{value.name}
 			</Pill>
 		);
@@ -145,7 +158,7 @@ const ReimbursementForm: React.FC = () => {
 							]}
 							{...form.getInputProps("requesterType")}
 						/>
-						{form.values.requesterType != "other" ? (
+						{form.values.requesterType !== "other" ? (
 							<TextInput
 								label="UIN"
 								description="TAMU affiliated Universal Identification Number."
@@ -167,6 +180,15 @@ const ReimbursementForm: React.FC = () => {
 							]}
 							{...form.getInputProps("deliveryMethod")}
 						/>
+						{form.values.deliveryMethod === "deposit" ? (
+							<Checkbox
+								name="directDepositSetup"
+								label="I assert I have direct deposit setup with the treasurer."
+								aria-label="i assert i have direct deposity setup with the treasurer"
+								description="Contact Treasurer (sasetamu.treasurer@gmail.com) if you are unsure."
+								{...form.getInputProps("directDepositSetup")}
+							/>
+						) : null}
 						<Textarea
 							label="Purpose of Purchase"
 							description="What was the purchase and how it is relevant to SASE."
