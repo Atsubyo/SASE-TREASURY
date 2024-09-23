@@ -1,42 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	Button,
 	Center,
-	Checkbox,
 	Container,
 	FileInput,
 	FileInputProps,
+	Group,
 	Pill,
 	PillGroup,
 	rem,
-	SegmentedControl,
 	Stack,
 	Textarea,
 	TextInput,
 	Title,
 } from "@mantine/core";
-import { DatePickerInput } from "@mantine/dates";
 import { useForm, zodResolver } from "@mantine/form";
-import { IconCalendar, IconFileTypePdf } from "@tabler/icons-react";
+import { useCookies } from "react-cookie";
+import { IconFileTypePdf } from "@tabler/icons-react";
 import styles from "@/app/forms/forms.module.css";
 import { SASE_BLUE } from "@/types/StyleConstants";
 import { ECreditFormType, ECreditFormSchema } from "@/types/FormTypes";
 
 const ECreditForm: React.FC = () => {
+	const [cookies, setCookie] = useCookies(["formData"]);
 	const form = useForm<ECreditFormType>({
 		initialValues: {
-			name: "",
-			phone: "",
-			vendorName: "",
-			vendorContact: "",
-			amount: "",
-			purpose: "",
-			proof: [],
+			firstName: cookies.formData?.firstName || "",
+			lastName: cookies.formData?.lastName || "",
+			phone: cookies.formData?.phone || "",
+			vendorName: cookies.formData?.vendorName || "",
+			vendorContact: cookies.formData?.vendorContact || "",
+			amount: cookies.formData?.amount || "",
+			purpose: cookies.formData?.purpose || "",
+			proof: cookies.formData?.proof || [],
 		},
 		validate: zodResolver(ECreditFormSchema),
 	});
+
+	useEffect(() => {
+		setCookie("formData", JSON.stringify(form.values), {
+			path: "/",
+		});
+	}, [form.values, setCookie]);
 
 	const handleSubmit = (values: ECreditFormType) => {
 		console.log(values);
@@ -96,15 +103,26 @@ const ECreditForm: React.FC = () => {
 					</Title>
 					<form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
 						<Stack justify="center">
-							<TextInput
-								label="Full Name"
-								description="Full name of the person who made the purchase."
-								aria-label="name"
-								placeholder="John Doe"
-								className={`${styles.textInput} ${styles.inputMargin}`}
-								withAsterisk
-								{...form.getInputProps("name")}
-							/>
+							<Group className={`${styles.textInput} ${styles.inputMargin}`}>
+								<TextInput
+									label="First Name"
+									description="First name of the person who made the purchase."
+									aria-label="first name"
+									placeholder="John"
+									withAsterisk
+									flex={1}
+									{...form.getInputProps("firstName")}
+								/>
+								<TextInput
+									label="Last Name"
+									description="Last name of the person who made the purchase."
+									aria-label="last name"
+									placeholder="Doe"
+									withAsterisk
+									flex={1}
+									{...form.getInputProps("lastName")}
+								/>
+							</Group>
 							<TextInput
 								label="Phone Number"
 								description="Phone number of the person who made the purchase."
@@ -164,9 +182,15 @@ const ECreditForm: React.FC = () => {
 								accept="pdf"
 								multiple
 								clearable
+								withAsterisk
 								{...form.getInputProps("proof")}
 							/>
-							<Button size="lg" type="submit" className={styles.fullButton}>
+							<Button
+								size="lg"
+								type="submit"
+								color={SASE_BLUE}
+								className={styles.fullButton}
+							>
 								Submit
 							</Button>
 						</Stack>

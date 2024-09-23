@@ -14,11 +14,11 @@
 }
 
 .textInput {
-  max-width: 40rem;
+  min-width: 40rem;
 }
 
 .input {
-  max-width: 40rem;
+  min-width: 40rem;
 }
 
 .inputMargin {

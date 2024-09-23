@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export interface ReimbursementFormType {
-	name: string;
+	firstName: string;
+	lastName: string;
 	phone: string;
 	address: string;
 	transactionDate: Date | undefined;
@@ -15,7 +16,8 @@ export interface ReimbursementFormType {
 }
 
 export interface ECreditFormType {
-	name: string;
+	firstName: string;
+	lastName: string;
 	phone: string;
 	vendorName: string;
 	vendorContact: string;

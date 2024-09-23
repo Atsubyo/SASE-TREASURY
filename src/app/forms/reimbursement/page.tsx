@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	Button,
 	Center,
@@ -8,6 +8,7 @@ import {
 	Container,
 	FileInput,
 	FileInputProps,
+	Group,
 	Pill,
 	PillGroup,
 	rem,
@@ -19,6 +20,7 @@ import {
 } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { useForm, zodResolver } from "@mantine/form";
+import { useCookies } from "react-cookie";
 import { IconCalendar, IconFileTypePdf } from "@tabler/icons-react";
 import styles from "@/app/forms/forms.module.css";
 import { SASE_BLUE } from "@/types/StyleConstants";
@@ -28,9 +30,11 @@ import {
 } from "@/types/FormTypes";
 
 const ReimbursementForm: React.FC = () => {
+	const [cookies, setCookie] = useCookies(["formData"]);
 	const form = useForm<ReimbursementFormType>({
 		initialValues: {
-			name: "",
+			firstName: "",
+			lastName: "",
 			phone: "",
 			address: "",
 			transactionDate: undefined,
@@ -44,6 +48,12 @@ const ReimbursementForm: React.FC = () => {
 		},
 		validate: zodResolver(ReimbursementFormSchema),
 	});
+
+	useEffect(() => {
+		setCookie("formData", JSON.stringify(form.values), {
+			path: "/",
+		});
+	}, [form.values, setCookie]);
 
 	const handleSubmit = (values: ReimbursementFormType) => {
 		if (values.requesterType === "other") {
@@ -110,15 +120,26 @@ const ReimbursementForm: React.FC = () => {
 					</Title>
 					<form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
 						<Stack justify="center">
-							<TextInput
-								label="Full Name"
-								description="Full name of the person who made the purchase."
-								aria-label="name"
-								placeholder="John Doe"
-								className={`${styles.textInput} ${styles.inputMargin}`}
-								withAsterisk
-								{...form.getInputProps("name")}
-							/>
+							<Group className={`${styles.textInput} ${styles.inputMargin}`}>
+								<TextInput
+									label="First Name"
+									description="First name of the person who made the purchase."
+									aria-label="first name"
+									placeholder="John"
+									withAsterisk
+									flex={1}
+									{...form.getInputProps("firstName")}
+								/>
+								<TextInput
+									label="Last Name"
+									description="Last name of the person who made the purchase."
+									aria-label="last name"
+									placeholder="Doe"
+									withAsterisk
+									flex={1}
+									{...form.getInputProps("lastName")}
+								/>
+							</Group>
 							<TextInput
 								label="Phone Number"
 								description="Phone number of the person who made the purchase."
@@ -169,7 +190,6 @@ const ReimbursementForm: React.FC = () => {
 									aria-label="name"
 									placeholder="123456789"
 									className={`${styles.textInput} ${styles.inputMargin}`}
-									withAsterisk
 									{...form.getInputProps("uin")}
 								/>
 							) : null}
@@ -216,9 +236,15 @@ const ReimbursementForm: React.FC = () => {
 								accept="pdf"
 								multiple
 								clearable
+								withAsterisk
 								{...form.getInputProps("proof")}
 							/>
-							<Button size="lg" type="submit" className={styles.fullButton}>
+							<Button
+								size="lg"
+								type="submit"
+								color={SASE_BLUE}
+								className={styles.fullButton}
+							>
 								Submit
 							</Button>
 						</Stack>
