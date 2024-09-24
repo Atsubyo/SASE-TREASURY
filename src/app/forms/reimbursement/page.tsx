@@ -30,27 +30,28 @@ import {
 } from "@/types/FormTypes";
 
 const ReimbursementForm: React.FC = () => {
-	const [cookies, setCookie] = useCookies(["formData"]);
+	const [cookies, setCookie] = useCookies<string>(["reimbursementForm"]);
 	const form = useForm<ReimbursementFormType>({
 		initialValues: {
-			firstName: "",
-			lastName: "",
-			phone: "",
-			address: "",
-			transactionDate: undefined,
-			requesterType: "student",
-			uin: "",
-			deliveryMethod: "mailin",
-			directDepositSetup: false,
-			amount: 0,
-			purpose: "",
-			proof: [],
+			firstName: cookies.reimbursementForm?.firstName || "",
+			lastName: cookies.reimbursementForm?.lastName || "",
+			phone: cookies.reimbursementForm?.phone || "",
+			address: cookies.reimbursementForm?.address || "",
+			transactionDate: cookies.reimbursementForm?.transactionDate || undefined,
+			requesterType: cookies.reimbursementForm?.requesterType || "student",
+			uin: cookies.reimbursementForm?.uin || "",
+			deliveryMethod: cookies.reimbursementForm?.deliveryMethod || "mailin",
+			directDepositSetup:
+				cookies.reimbursementForm?.directDepositSetup || false,
+			amount: cookies.reimbursementForm?.amount || 0,
+			purpose: cookies.reimbursementForm?.purpose || "",
+			proof: cookies.reimbursementForm?.proof || [],
 		},
 		validate: zodResolver(ReimbursementFormSchema),
 	});
 
 	useEffect(() => {
-		setCookie("formData", JSON.stringify(form.values), {
+		setCookie("reimbursementForm", JSON.stringify(form.values), {
 			path: "/",
 		});
 	}, [form.values, setCookie]);

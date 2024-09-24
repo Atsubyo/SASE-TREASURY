@@ -24,23 +24,23 @@ import { SASE_BLUE } from "@/types/StyleConstants";
 import { ECreditFormType, ECreditFormSchema } from "@/types/FormTypes";
 
 const ECreditForm: React.FC = () => {
-	const [cookies, setCookie] = useCookies(["formData"]);
+	const [cookies, setCookie] = useCookies(["eCreditForm"]);
 	const form = useForm<ECreditFormType>({
 		initialValues: {
-			firstName: cookies.formData?.firstName || "",
-			lastName: cookies.formData?.lastName || "",
-			phone: cookies.formData?.phone || "",
-			vendorName: cookies.formData?.vendorName || "",
-			vendorContact: cookies.formData?.vendorContact || "",
-			amount: cookies.formData?.amount || "",
-			purpose: cookies.formData?.purpose || "",
-			proof: cookies.formData?.proof || [],
+			firstName: cookies.eCreditForm?.firstName || "",
+			lastName: cookies.eCreditForm?.lastName || "",
+			phone: cookies.eCreditForm?.phone || "",
+			vendorName: cookies.eCreditForm?.vendorName || "",
+			vendorContact: cookies.eCreditForm?.vendorContact || "",
+			amount: cookies.eCreditForm?.amount || "",
+			purpose: cookies.eCreditForm?.purpose || "",
+			proof: cookies.eCreditForm?.proof || [],
 		},
 		validate: zodResolver(ECreditFormSchema),
 	});
 
 	useEffect(() => {
-		setCookie("formData", JSON.stringify(form.values), {
+		setCookie("eCreditForm", JSON.stringify(form.values), {
 			path: "/",
 		});
 	}, [form.values, setCookie]);
