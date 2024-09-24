@@ -57,8 +57,8 @@ const ReimbursementForm: React.FC = () => {
 
 	const handleSubmit = (values: ReimbursementFormType) => {
 		if (values.requesterType === "other") {
-			values.uin = "";
-			form.setFieldValue("uin", "");
+			values.uin = "N/A";
+			form.setFieldValue("uin", "N/A");
 		}
 		if (values.deliveryMethod !== "deposit") {
 			values.directDepositSetup = false;
@@ -190,6 +190,7 @@ const ReimbursementForm: React.FC = () => {
 									aria-label="name"
 									placeholder="123456789"
 									className={`${styles.textInput} ${styles.inputMargin}`}
+									withAsterisk
 									{...form.getInputProps("uin")}
 								/>
 							) : null}

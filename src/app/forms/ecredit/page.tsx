@@ -172,9 +172,9 @@ const ECreditForm: React.FC = () => {
 								{...form.getInputProps("purpose")}
 							/>
 							<FileInput
-								label="Proof of Purchase"
+								label="Invoice for Purchase"
 								aria-label="proof of purchase"
-								placeholder="HEB_Receipt-John_Doe.pdf"
+								placeholder="Invoice-John_Doe.pdf"
 								className={`${styles.input} ${styles.inputMargin}`}
 								leftSection={<IconFileTypePdf className={styles.inputIcon} />}
 								leftSectionPointerEvents="none"

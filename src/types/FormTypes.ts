@@ -50,7 +50,7 @@ export const ReimbursementFormSchema = z
 		address: z.string().min(1, "Mailing address is required"),
 		transactionDate: z.date({ message: "Date of transaction is required" }),
 		requesterType: z.enum(["student", "employee", "other"]),
-		uin: z.string().optional(),
+		uin: z.string().min(1, "UIN is required"),
 		deliveryMethod: z.enum(["mailin", "pickup", "deposit"]),
 		directDepositSetup: z.boolean().optional(),
 		purpose: z.string().min(1, "Purpose for purchase is required"),
