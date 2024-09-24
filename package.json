@@ -1,39 +1,39 @@
 {
 	"name": "sase-treasury",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@mantine/core": "^7.12.2",
-    "@mantine/dates": "^7.12.1",
-    "@mantine/dropzone": "^7.12.2",
-    "@mantine/form": "^7.12.2",
-    "@mantine/hooks": "^7.12.2",
-    "@mantine/modals": "^7.12.1",
-    "@mantine/notifications": "^7.12.1",
-    "@tabler/icons-react": "^3.16.0",
-    "clsx": "^2.1.1",
-    "mantine-datatable": "^7.11.3",
-    "next": "14.2.6",
-    "react": "^18",
-    "react-cookie": "^7.2.0",
-    "react-dom": "^18",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.6",
-    "postcss": "^8.4.41",
-    "postcss-preset-mantine": "^1.17.0",
-    "postcss-simple-vars": "^7.0.1",
-    "typescript": "^5"
-  }
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "WATCHPACK_POLLING=true next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@mantine/core": "^7.12.2",
+		"@mantine/dates": "^7.12.1",
+		"@mantine/dropzone": "^7.12.2",
+		"@mantine/form": "^7.12.2",
+		"@mantine/hooks": "^7.12.2",
+		"@mantine/modals": "^7.12.1",
+		"@mantine/notifications": "^7.12.1",
+		"@tabler/icons-react": "^3.16.0",
+		"clsx": "^2.1.1",
+		"mantine-datatable": "^7.11.3",
+		"next": "^14.2.13",
+		"react": "^18",
+		"react-cookie": "^7.2.0",
+		"react-dom": "^18",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.6",
+		"postcss": "^8.4.41",
+		"postcss-preset-mantine": "^1.17.0",
+		"postcss-simple-vars": "^7.0.1",
+		"typescript": "^5"
+	}
 }
