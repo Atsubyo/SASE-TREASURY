@@ -11,7 +11,6 @@ interface LoginFallbackProps {
 
 const LoginPromptModal: React.FC<LoginFallbackProps> = (props) => {
 	const [opened, { open, close }] = useDisclosure(false);
-	console.log(props.status);
 
 	useEffect(() => {
 		if (props.status === "unauthenticated") {
