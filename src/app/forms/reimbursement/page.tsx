@@ -23,7 +23,6 @@ import { useForm, zodResolver } from "@mantine/form";
 import { useCookies } from "react-cookie";
 import { IconCalendar, IconFileTypePdf } from "@tabler/icons-react";
 import styles from "@/app/forms/forms.module.css";
-import { SASE_BLUE } from "@/types/StyleConstants";
 import {
 	ReimbursementFormType,
 	ReimbursementFormSchema,
@@ -176,7 +175,7 @@ const ReimbursementForm: React.FC = () => {
 							<SegmentedControl
 								value={form.values.requesterType}
 								className={`${styles.input} ${styles.inputMargin}`}
-								color={SASE_BLUE}
+								color="blue"
 								data={[
 									{ label: "TAMU Student", value: "student" },
 									{ label: "TAMU Employee", value: "employee" },
@@ -198,7 +197,7 @@ const ReimbursementForm: React.FC = () => {
 							<SegmentedControl
 								value={form.values.deliveryMethod}
 								className={`${styles.input} ${styles.inputMargin}`}
-								color={SASE_BLUE}
+								color="blue"
 								data={[
 									{ label: "Mail In Check", value: "mailin" },
 									{ label: "SOFC Pickup", value: "pickup" },
@@ -244,7 +243,7 @@ const ReimbursementForm: React.FC = () => {
 							<Button
 								size="lg"
 								type="submit"
-								color={SASE_BLUE}
+								color="blue"
 								className={styles.fullButton}
 							>
 								Submit

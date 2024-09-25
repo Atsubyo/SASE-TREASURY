@@ -20,7 +20,6 @@ import { useForm, zodResolver } from "@mantine/form";
 import { useCookies } from "react-cookie";
 import { IconFileTypePdf } from "@tabler/icons-react";
 import styles from "@/app/forms/forms.module.css";
-import { SASE_BLUE } from "@/types/StyleConstants";
 import { ECreditFormType, ECreditFormSchema } from "@/types/FormTypes";
 
 const ECreditForm: React.FC = () => {
@@ -188,7 +187,7 @@ const ECreditForm: React.FC = () => {
 							<Button
 								size="lg"
 								type="submit"
-								color={SASE_BLUE}
+								color="blue"
 								className={styles.fullButton}
 							>
 								Submit

@@ -30,7 +30,7 @@ const RequestProcessDrawer: React.FC<RequestProcessDrawerParams> = (props) => {
 			title={`Review ${props.rowParams?.record.requesterName}'s Request`}
 		>
 			<Text>{formatUSD(props.rowParams?.record.amount)}</Text>
-			<Button>{props.rowParams?.index}</Button>
+			<Button bg="blue">{props.rowParams?.index}</Button>
 		</Drawer>
 	);
 };

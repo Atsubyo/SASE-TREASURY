@@ -3,14 +3,19 @@ import { Button, Container, SimpleGrid } from "@mantine/core";
 import styles from "./forms.module.css";
 import Link from "next/link";
 
-const Forms = () => {
+const Forms: React.FC = () => {
 	return (
 		<Container className={styles.container}>
 			<SimpleGrid className={styles.simpleGrid} cols={2}>
-				<Button size="xl" component={Link} href="/forms/reimbursement">
+				<Button
+					size="xl"
+					component={Link}
+					href="/forms/reimbursement"
+					bg="blue"
+				>
 					Reimbursement Form
 				</Button>
-				<Button size="xl" component={Link} href="/forms/ecredit">
+				<Button size="xl" component={Link} href="/forms/ecredit" bg="blue">
 					eCredit
 				</Button>
 			</SimpleGrid>

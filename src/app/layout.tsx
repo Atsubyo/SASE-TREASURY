@@ -3,23 +3,50 @@ import "mantine-datatable/styles.layer.css";
 import "@mantine/dates/styles.css";
 import "@mantine/dropzone/styles.css";
 
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import { GlobalHeader } from "@/components";
 import SessionWrapper from "@/components/auth/SessionWrapper";
-import LoginFallback from "@/components/auth/LoginFallback";
+import AppWrapper from "./AppWrapper";
 
 export const metadata = {
 	title: "My Mantine app",
 	description: "I have followed setup instructions carefully",
 };
 
+const mantineTheme = createTheme({
+	colors: {
+		blue: [
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+			"#0668B3",
+		],
+		green: [
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+			"#7DC242",
+		],
+	},
+});
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const tabs = ["Home", "Forms", "Dashboard"];
 	return (
 		<SessionWrapper>
 			<html lang="en">
@@ -27,10 +54,9 @@ export default function RootLayout({
 					<ColorSchemeScript />
 				</head>
 				<body>
-					<MantineProvider>
+					<MantineProvider theme={mantineTheme}>
 						<ModalsProvider>
-							<GlobalHeader title="SASE Treasury" tabs={tabs} />
-							<LoginFallback>{children}</LoginFallback>
+							<AppWrapper>{children}</AppWrapper>
 						</ModalsProvider>
 					</MantineProvider>
 				</body>

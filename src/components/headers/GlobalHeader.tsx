@@ -18,10 +18,14 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import styles from "./globalHeader.module.css";
 import Link from "next/link";
+import { signIn, signOut } from "next-auth/react";
+import { Session } from "next-auth";
+import { FcGoogle } from "react-icons/fc";
 
 interface GlobalHeaderProps {
 	title: string;
 	tabs: string[];
+	session: Session | null;
 }
 
 const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
@@ -54,7 +58,22 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 						))}
 					</Group>
 					<Group visibleFrom="sm">
-						<Button>Login</Button>
+						{props.session ? (
+							<Button onClick={() => signOut()}
+							variant="default"
+							className={styles.defaultAuthButton}>
+								Sign Out
+							</Button>
+						) : (
+							<Button
+								onClick={() => signIn("google")}
+								leftSection={<FcGoogle />}
+								variant="default"
+								className={styles.defaultAuthButton}
+							>
+								Sign In via Google
+							</Button>
+						)}
 					</Group>
 
 					<Burger
@@ -69,7 +88,7 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 				onClose={closeDrawer}
 				size="100%"
 				padding="md"
-				title="SOFC Form Manager"
+				title={props.title}
 				hiddenFrom="sm"
 				zIndex={1000000}
 			>
@@ -83,7 +102,24 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 					<Divider my="sm" />
 
 					<Group justify="center" grow pb="xl" px="md">
-						<Button variant="default">Log in</Button>
+						{props.session ? (
+							<Button
+								onClick={() => signOut()}
+								variant="default"
+								className={styles.defaultAuthButton}
+							>
+								Sign Out
+							</Button>
+						) : (
+							<Button
+								onClick={() => signIn("google")}
+								leftSection={<FcGoogle />}
+								variant="default"
+								className={styles.defaultAuthButton}
+							>
+								Sign In via Google
+							</Button>
+						)}
 					</Group>
 				</ScrollArea>
 			</Drawer>
