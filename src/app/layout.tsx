@@ -7,6 +7,7 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { GlobalHeader } from "@/components";
 import SessionWrapper from "@/components/auth/SessionWrapper";
+import LoginFallback from "@/components/auth/LoginFallback";
 
 export const metadata = {
 	title: "My Mantine app",
@@ -29,7 +30,7 @@ export default function RootLayout({
 					<MantineProvider>
 						<ModalsProvider>
 							<GlobalHeader title="SASE Treasury" tabs={tabs} />
-							{children}
+							<LoginFallback>{children}</LoginFallback>
 						</ModalsProvider>
 					</MantineProvider>
 				</body>
