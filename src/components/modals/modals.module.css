@@ -1,0 +1,7 @@
+.defaultAuthButton {
+  border-color: #0668B3;
+}
+
+.defaultAuthButton:hover {
+  background-color: #0668b325;
+}

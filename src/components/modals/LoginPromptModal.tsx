@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { signIn } from "next-auth/react";
 import { useDisclosure } from "@mantine/hooks";
+import styles from "./modals.module.css";
+import { FcGoogle } from "react-icons/fc";
 
 interface LoginFallbackProps {
 	status: "authenticated" | "loading" | "unauthenticated";
@@ -29,11 +31,17 @@ const LoginPromptModal: React.FC<LoginFallbackProps> = (props) => {
 		>
 			<Stack align="center">
 				<Text size="sm" ta="center">
-					Authentication with a SASE Recognized account is required to gain
-					access to this site. Please sign in before you may continue.
+					A SASE recognized Google account is required to access this site. Sign
+					in with a relevant account to continue.
 				</Text>
-				<Button onClick={() => signIn("google")} variant="primary" bg="blue">
-					Sign in With Google
+				<Button
+					onClick={() => signIn("google")}
+					leftSection={<FcGoogle />}
+					variant="default"
+					size="md"
+					className={styles.defaultAuthButton}
+				>
+					Sign in with Google
 				</Button>
 			</Stack>
 		</Modal>

@@ -59,9 +59,11 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 					</Group>
 					<Group visibleFrom="sm">
 						{props.session ? (
-							<Button onClick={() => signOut()}
-							variant="default"
-							className={styles.defaultAuthButton}>
+							<Button
+								onClick={() => signOut()}
+								variant="default"
+								className={styles.defaultAuthButton}
+							>
 								Sign Out
 							</Button>
 						) : (
@@ -71,7 +73,7 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 								variant="default"
 								className={styles.defaultAuthButton}
 							>
-								Sign In via Google
+								Sign in with Google
 							</Button>
 						)}
 					</Group>
@@ -117,7 +119,7 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 								variant="default"
 								className={styles.defaultAuthButton}
 							>
-								Sign In via Google
+								Sign in with Google
 							</Button>
 						)}
 					</Group>
