@@ -5,8 +5,8 @@ import "@mantine/dropzone/styles.css";
 
 import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import SessionWrapper from "@/components/auth/SessionWrapper";
-import AppWrapper from "./AppWrapper";
+import SessionWrapper from "@/components/wrappers/SessionWrapper";
+import AppWrapper from "../components/wrappers/AppWrapper";
 
 export const metadata = {
 	title: "My Mantine app",
