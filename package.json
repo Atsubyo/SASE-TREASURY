@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@mantine/charts": "^7.13.0",
 		"@mantine/core": "^7.12.2",
 		"@mantine/dates": "^7.12.1",
 		"@mantine/dropzone": "^7.12.2",
@@ -25,6 +26,7 @@
 		"react-cookie": "^7.2.0",
 		"react-dom": "^18",
 		"react-icons": "^5.3.0",
+		"recharts": "^2.12.7",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
