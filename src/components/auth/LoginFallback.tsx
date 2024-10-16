@@ -10,7 +10,7 @@ const LoginFallback: React.FC<LoginFallbackProps> = (props) => {
 	return (
 		<main className={styles.main}>
 			<Stack>
-				This application requires authentication via Google.
+				This application requires authentication with approved Google account.
 				<LoginPromptModal status={props.status} />
 			</Stack>
 		</main>
