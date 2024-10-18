@@ -5,27 +5,35 @@ import {
 	mockTotalBudgetData,
 	mockCategorizedBudgetData,
 } from "@/data/mockRequests";
-import { Grid, GridCol, Stack, Text } from "@mantine/core";
+import { Flex, Grid, GridCol, Text } from "@mantine/core";
 import StackedBar from "@/components/dataDisplays/StackedBar";
 
 const TreasurerHome: React.FC = () => {
 	return (
 		<main className={styles.main}>
 			<Grid grow gutter={{ base: 5, xs: "md", md: "xl", xl: 50 }}>
-				<GridCol span={6}>
-					<Stack align="center">
-						<Text fz="h2" mb="sm" ta="center">
-							Expenses
-						</Text>
+				<GridCol span={12}>
+					<Flex align="flex-start" justify="center" direction="column" w="100%">
 						<StackedBar
+							title="Expenses"
 							data={mockTotalBudgetData}
 							dataKey="category"
 							series={{ name: "value" }}
 						/>
-					</Stack>
+					</Flex>
 				</GridCol>
 				<GridCol span={12}>
-					<Stack align="center">
+					<Flex align="flex-start" justify="center" direction="column" w="100%">
+						<StackedBar
+							title="Funding"
+							data={mockTotalBudgetData}
+							dataKey="category"
+							series={{ name: "value" }}
+						/>
+					</Flex>
+				</GridCol>
+				<GridCol span={12}>
+					<Flex align="center" justify="center" direction="column" w="100%">
 						<Text fz="h2" mb="sm" ta="center">
 							Expenses vs. Funding
 						</Text>
@@ -46,7 +54,7 @@ const TreasurerHome: React.FC = () => {
 								{ name: "funding", label: "Funding", color: "green.4" },
 							]}
 						/>
-					</Stack>
+					</Flex>
 				</GridCol>
 			</Grid>
 		</main>
