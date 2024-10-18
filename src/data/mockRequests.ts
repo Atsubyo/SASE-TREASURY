@@ -23,11 +23,22 @@ export const mockData: Request[] = [
 	},
 ];
 
-export const mockTotalBudgetData: CategoryBudgetData[] = [
-	{ category: "USA", value: 400, color: "indigo.6" },
-	{ category: "India", value: 300, color: "yellow.6" },
-	{ category: "Japan", value: 300, color: "teal.6" },
-	{ category: "Other", value: 200, color: "gray.6" },
+export const mockExpenseBudgetData: CategoryBudgetData[] = [
+	{ category: "GBM Food", value: 400, color: "violet.9" },
+	{ category: "Social Events", value: 300, color: "violet.8" },
+	{ category: "Squad Events", value: 300, color: "violet.7" },
+	{ category: "Fundraisers", value: 200, color: "violet.6" },
+	{ category: "National Conference", value: 200, color: "violet.5" },
+	{ category: "Miscellaneous", value: 200, color: "violet.4" },
+];
+
+export const mockFundingBudgetData: CategoryBudgetData[] = [
+	{ category: "Companies", value: 400, color: "violet.9" },
+	{ category: "Fundraisers", value: 300, color: "violet.8" },
+	{ category: "Concessions", value: 300, color: "violet.7" },
+	{ category: "Profit Shares", value: 200, color: "violet.6" },
+	{ category: "Membership Dues", value: 200, color: "violet.5" },
+	{ category: "Miscellaneous", value: 200, color: "violet.4" },
 ];
 
 export const mockCategorizedBudgetData: MonthlyBudgetData[] = [

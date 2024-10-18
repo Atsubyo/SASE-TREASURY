@@ -23,15 +23,6 @@ const StackedBar: React.FC<StackedBarProps> = ({
 	series,
 }) => {
 	const maxValue = data.reduce((acc, item) => acc + item.value, 0);
-	const colors: DefaultMantineColor[] = [
-		"red",
-		"orange",
-		"yellow",
-		"green",
-		"blue",
-		"indigo",
-		"violet",
-	];
 
 	return (
 		<Fragment>
@@ -51,7 +42,7 @@ const StackedBar: React.FC<StackedBarProps> = ({
 						>
 							<ProgressSection
 								value={parseFloat(percentage)}
-								color={colors[index]}
+								color={item.color}
 							>
 								<ProgressLabel>{item[dataKey]}</ProgressLabel>
 							</ProgressSection>

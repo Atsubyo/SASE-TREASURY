@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./treasury.module.css";
 import { BarChart } from "@mantine/charts";
 import {
-	mockTotalBudgetData,
+	mockExpenseBudgetData,
+	mockFundingBudgetData,
 	mockCategorizedBudgetData,
 } from "@/data/mockRequests";
 import { Flex, Grid, GridCol, Text } from "@mantine/core";
@@ -16,7 +17,7 @@ const TreasurerHome: React.FC = () => {
 					<Flex align="flex-start" justify="center" direction="column" w="100%">
 						<StackedBar
 							title="Expenses"
-							data={mockTotalBudgetData}
+							data={mockExpenseBudgetData}
 							dataKey="category"
 							series={{ name: "value" }}
 						/>
@@ -26,7 +27,7 @@ const TreasurerHome: React.FC = () => {
 					<Flex align="flex-start" justify="center" direction="column" w="100%">
 						<StackedBar
 							title="Funding"
-							data={mockTotalBudgetData}
+							data={mockFundingBudgetData}
 							dataKey="category"
 							series={{ name: "value" }}
 						/>
