@@ -4,14 +4,17 @@ import React from "react";
 import {
 	AppShell,
 	AppShellHeader,
+	Avatar,
 	Burger,
 	Button,
 	Divider,
 	Drawer,
 	Group,
+	Menu,
 	rem,
 	ScrollArea,
 	Text,
+	Title,
 	UnstyledButton,
 	useMantineTheme,
 } from "@mantine/core";
@@ -21,6 +24,7 @@ import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
 import { Session } from "next-auth";
 import { FcGoogle } from "react-icons/fc";
+import { IconDoorEnter, IconDoorExit, IconSettings } from "@tabler/icons-react";
 
 interface GlobalHeaderProps {
 	title: string;
@@ -58,24 +62,52 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 						))}
 					</Group>
 					<Group visibleFrom="sm">
-						{props.session ? (
-							<Button
-								onClick={() => signOut()}
-								variant="default"
-								className={styles.defaultAuthButton}
-							>
-								Sign Out
-							</Button>
-						) : (
-							<Button
-								onClick={() => signIn("google")}
-								leftSection={<FcGoogle />}
-								variant="default"
-								className={styles.defaultAuthButton}
-							>
-								Sign in with Google
-							</Button>
-						)}
+						<Menu
+							trigger="click-hover"
+							transitionProps={{ transition: "pop-top-right", duration: 100 }}
+							openDelay={50}
+							closeDelay={400}
+							width={175}
+						>
+							<Menu.Target>
+								<Avatar src={null} alt="no image" color="blue" />
+							</Menu.Target>
+
+							<Menu.Dropdown>
+								<Menu.Label>
+									{props.session?.user?.name}
+									<br />
+									{props.session?.user?.email}
+								</Menu.Label>
+								<Menu.Item
+									component={Link}
+									href="/profile"
+									title="Profile"
+									leftSection={<IconSettings size={14} />}
+								>
+									Profile
+								</Menu.Item>
+
+								<Menu.Divider />
+								{props.session ? (
+									<Menu.Item
+										onClick={() => signOut()}
+										color="red"
+										leftSection={<IconDoorEnter size={14} />}
+									>
+										Sign Out
+									</Menu.Item>
+								) : (
+									<Menu.Item
+										onClick={() => signIn("google")}
+										color="blue"
+										leftSection={<IconDoorExit size={14} />}
+									>
+										Sign In
+									</Menu.Item>
+								)}
+							</Menu.Dropdown>
+						</Menu>
 					</Group>
 
 					<Burger
@@ -95,31 +127,78 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = (props) => {
 				zIndex={1000000}
 			>
 				<ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+					<Title order={4} className={styles.drawerItem}>
+						{props.session?.user?.name}
+						<br />
+						{props.session?.user?.email}
+					</Title>
 					<Divider my="sm" />
 
-					<UnstyledButton className={styles.link}>Home</UnstyledButton>
-					<UnstyledButton className={styles.link}>Forms</UnstyledButton>
-					<UnstyledButton className={styles.link}>Dashboard</UnstyledButton>
+					<UnstyledButton
+						className={styles.link}
+						component={Link}
+						onClick={closeDrawer}
+						href="/profile"
+						title="Profile"
+					>
+						Profile
+					</UnstyledButton>
+
+					<Divider my="sm" />
+
+					<UnstyledButton
+						className={styles.link}
+						component={Link}
+						onClick={closeDrawer}
+						href="/home"
+						title="Home"
+					>
+						Home
+					</UnstyledButton>
+					<UnstyledButton
+						className={styles.link}
+						component={Link}
+						onClick={closeDrawer}
+						href="/forms"
+						title="Forms"
+					>
+						Forms
+					</UnstyledButton>
+					<UnstyledButton
+						className={styles.link}
+						component={Link}
+						onClick={closeDrawer}
+						href="/dashboard"
+						title="Dashboard"
+					>
+						Dashboard
+					</UnstyledButton>
 
 					<Divider my="sm" />
 
 					<Group justify="center" grow pb="xl" px="md">
 						{props.session ? (
 							<Button
-								onClick={() => signOut()}
-								variant="default"
-								className={styles.defaultAuthButton}
+								onClick={() => {
+									signOut();
+									closeDrawer();
+								}}
+								variant="filled"
+								color="red"
 							>
 								Sign Out
 							</Button>
 						) : (
 							<Button
-								onClick={() => signIn("google")}
+								onClick={() => {
+									signIn("google");
+									closeDrawer();
+								}}
 								leftSection={<FcGoogle />}
 								variant="default"
 								className={styles.defaultAuthButton}
 							>
-								Sign in with Google
+								Sign In
 							</Button>
 						)}
 					</Group>

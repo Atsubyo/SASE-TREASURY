@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 # FormFiller
 
->>>>>>> 5f8e40f043339764af6a92156edef6aa5a155f13
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
