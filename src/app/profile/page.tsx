@@ -8,7 +8,6 @@ import {
 	Grid,
 	GridCol,
 	Group,
-	Space,
 	Text,
 	Title,
 } from "@mantine/core";

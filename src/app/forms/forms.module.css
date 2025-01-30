@@ -1,10 +1,11 @@
 .container {
   height: calc(100dvh - rem(60));
-  padding-inline: 0;
+  padding-inline: 2;
 }
 
-.simpleGrid {
+.grid {
   height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
